@@ -1,0 +1,19 @@
+
+<%= simple_form_for(@weektime) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs container">
+    <%#= f.association :user %>
+    <%= f.input :dateweek %>
+    <%= f.input :alltime %>
+
+    <%if current_user.admin %>
+     Accord : <%= f.check_box :accord %>
+     <%end%>
+  </div>
+
+  <div class="form-actions container">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,46 @@
+ <p style="color: green"><%= notice %></p>
+ 
+ <h2 class="middle" > <strong> Semaine : </strong><%= @weektime.dateweek.cweek %> | <strong> Date : </strong><%= @weektime.dateweek %></h2>
+  
+   <br>
+    <div class="container">
+ 
+     
+        <% @worktime.each do |work| %>
+          <tr>
+            <td> # </td>
+            <td><%= work.gotime.to_fs(:time) %></td>
+            <td><%= work.endtime.to_fs(:time) %></td>
+            <td><%= Time.at(work.accord).utc.strftime("%H:%M") %></td>
+          </tr>
+        <% end %>
+        </tbody>
+        <thead class="thead-light">
+          <tr>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th><%= Time.at(@weektime.alltime).utc.strftime("%H:%M") %> Heures Total</th>
+          </tr>
+        </thead>
+      </table>
+  
+**********
+<Hr>
+<p>
+    <strong>Accord:</strong>
+    <%= @weektime.accord %>
+</p>
+<hr>
+
+<%if @weektime.worktimes.size <= 6 %>
+<%= link_to "new worktime", new_weektime_worktime_path(@weektime) %> |
+<%end%>
+
+
+<div>
+  <%= link_to "Edit this weektime", edit_weektime_path(@weektime) %> |
+  <%= link_to "Back to weektimes", weektimes_path %>
+
+  <%= button_to "Destroy this weektime", @weektime, method: :delete %>
+</div>
