@@ -31,8 +31,8 @@
         </ul>  
       <% else %> 
         <ul class="navbar-nav mr-auto">
+          <li><%= link_to "sign in", new_user_session_path %></li> 
           <li><%#= link_to "sign up", new_user_registration_path %></li> 
-          <li><%= link_to "sign up", new_user_registration_path %></li> 
         </ul>  
       <% end %> 
     </div>
