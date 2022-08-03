@@ -12,7 +12,7 @@
 
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
      <% unless current_user %>
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item active"> <a href="#About" class="nav-link scroll">About</a> </li>
         <li class="nav-item"> <a href="#Ticketsection" class="nav-link scroll">Ticket</a> </li>
         <li class="nav-item"> <a href="#Clientsection" class="nav-link scroll">Clients</a> </li>
@@ -25,9 +25,12 @@
     <div class=" collapse navbar-collapse" id="navbar-toggler" >
 
       <% if current_user %>
-        <ul class="navbar-nav mr-auto">      
+        <ul class="navbar-nav ml-auto">      
           <li><%= link_to "Sign Out", destroy_user_session_path, 'data-turbo-method': :delete %></li> |           
-          <li><%= link_to "Edit Account", edit_user_registration_path %></li> 
+          <li><%= link_to "Edit Account", edit_user_registration_path %></li>
+          <% if current_user.admin? %>
+            | <li><%= link_to "Admin", admin_dashboard_path , class: "color:red"%></li>
+          <%end%>
         </ul>  
       <% else %> 
         <ul class="navbar-nav mr-auto">

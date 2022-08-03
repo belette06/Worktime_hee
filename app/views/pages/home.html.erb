@@ -16,13 +16,6 @@
         <li><%= link_to "create weektimes", new_weektime_path %></li> 
         <li><%= link_to " weektimes", weektimes_path %></li>
         </br>
-     <% if current_user.admin? %>
-        <h3>User</h3>
-        <li><%= link_to "create weektimes", new_weektime_path %></li> 
-        <li><%= link_to " weektimes", weektimes_path %></li>
-    
-
-    <%end%>
 
     </section>
     <% else %>
