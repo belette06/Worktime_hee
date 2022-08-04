@@ -43,9 +43,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_03_152223) do
 
   create_table "weektimes", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.date "dateweek"
+    t.date "dateweek", null: false
     t.float "alltime"
-    t.integer "accord"
+    t.boolean "accord"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "worktime_id"
@@ -55,8 +55,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_03_152223) do
 
   create_table "worktimes", force: :cascade do |t|
     t.bigint "weektime_id", null: false
-    t.time "gotime"
-    t.time "endtime"
+    t.time "gotime", null: false
+    t.time "endtime", null: false
     t.integer "accord"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

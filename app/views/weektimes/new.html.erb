@@ -1,21 +1,27 @@
-<h1>New weektime</h1>
 
+<div >
+ 
+  <h1 class="text-center">New weektime</h1>
+</div>
+
+
+  <div class="border p-3 mb-4 container">
 <%= simple_form_for(@weektime) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs container">
-    <%= f.input :dateweek %>
-    
-  </div>
 
-  <div class="form-actions container">
+
+    <%= f.input :dateweek, as: :date, html5: true, label: "Selectionne le jour de la semaine " , hint: 'selection |jour|mois|année, pour selectionner une semaine'%>
+  
+
+  <div class="form-actions text-center ">
     <%= f.button :submit %>
   </div>
 <% end %>
-
+</div>
 <br>
 
-<div>
-  <%= link_to "Back to weektimes", weektimes_path %>
+<div class="container">
+   <%= button_to "Voir toutes mes heures", weektimes_path, method: :get, class: "text-right"%>
 </div>
