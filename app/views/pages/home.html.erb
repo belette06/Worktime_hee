@@ -1,20 +1,25 @@
 <h1>Pages#home</h1>
-  <div class="container">
-    
-
+  <div class="container ">
+  
     <% if current_user%>
-    <section>
-     
+    <section class= "container border p-3 mb-4">
+      <div class= "Wrapper text-center" >
         <p> Hello <%= current_user.email %> ! </p>
          <p> tu es <%= current_user.role %> ! </p>
-
+      </div>
     </section>
         </hr>
-    <section>
-   
-        <h3>Worktimes</h3>
-        <li><%= link_to "create weektimes", new_weektime_path %></li> 
-        <li><%= link_to " weektimes", weektimes_path %></li>
+        </br>
+
+    <section class= "container border p-3 mb-4 " >
+    
+        <h2 class= "text-center font-weight-bold" >Worktimes</h2>
+        </br>
+        <div class= "text-center  " >
+          <%= button_to "feuille d'heures", new_weektime_path, method: :get %>
+          </br>
+          <%= button_to "Toutes mes heures", weektimes_path, method: :get %>
+        </div>
         </br>
 
     </section>

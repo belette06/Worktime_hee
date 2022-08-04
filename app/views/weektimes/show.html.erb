@@ -34,7 +34,7 @@
 <hr>
 
 <%if @weektime.worktimes.size <= 6 %>
-<%= link_to "new worktime", new_weektime_worktime_path(@weektime) %> |
+<%= burron_to "new worktime", new_weektime_worktime_path(@weektime), class:"btn" %> |
 <%end%>
 
 
