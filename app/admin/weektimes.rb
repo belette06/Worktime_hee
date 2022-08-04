@@ -30,8 +30,8 @@ ActiveAdmin.register Weektime do
   index do
     column :user_id, as: :string
     column :dateweek, as: :date
-    column "worktime_id", sortable: :worktime_id do |work|
-      work.accord.size
+    column "worktime_id", sortable: Worktime do |work|
+      work.accord
     end
    
     column :alltime

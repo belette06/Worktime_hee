@@ -26,7 +26,7 @@
             <tr>
               <td> # </td>
               <td><%= work.gotime.to_fs(:time) %></td>
-              <td><%= work.endtime.to_fs(:time) %></td>
+              <td><%= work.endtime.to_fs(:time) %></td> 
               <td><%= Time.at(work.accord).utc.strftime("%HH %Mmin") %></td>
             </tr>
           <% end %>
@@ -44,12 +44,13 @@
       </table>
   </div>
   <hr>
-  <div class="container">
+  <div class="container ">
     <div class="text-center">
       <%= button_to "new worktime", new_weektime_worktime_path(@weektime), method: :get %>
     </div>
-    <div class="pull-right row">
-      <%= button_to "Modifier", edit_weektime_path(@weektime), method: :get %>   
+
+    <div class="">
+      <%= button_to "Modifier", edit_weektime_path(@weektime), method: :get %> </br>
       <%= button_to "Supprimer", @weektime, method: :delete, form: { data: { 'turbo-confirm': 'Vous etes sur ?' } }  %>
     </div>
   </div>

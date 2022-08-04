@@ -29,7 +29,8 @@ class WorktimesController < ApplicationController
     @weektime = Weektime.find(params[:weektime_id])
   @worktime = @weektime.worktimes.build(worktime_params)
   @worktime.weektime_id = params[:weektime_id]
-  @worktime.accord = (@worktime.endtime - @worktime.gotime) 
+  @worktime.accord = (@worktime.endtime - @worktime.gotime)
+
   
   
   
