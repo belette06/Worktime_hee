@@ -1,9 +1,9 @@
   <tr>
-    <td><%= weektime.user_id %></td>
-    <td><%= weektime.dateweek.cweek %>|<%= weektime.dateweek.to_fs(:date) %></td>
-    <td><%= weektime.worktimes.size %></td>
-    <td><%= weektime.alltime %></td>
-    <td><%= weektime.accord %></td>
-    <td><%= link_to "Show", weektime %></td>
+    <td class="text-center"><%= weektime.user_id %></td>
+    <td class="text-center"><%= weektime.dateweek.cweek %> | <%= weektime.dateweek.strftime("%Y-%m") %></td>
+    <td class="text-center"><%= weektime.worktimes.size %></td>
+    <td class="text-center"><%= weektime.alltime %></td>
+    <td class="text-center"><%= weektime.accord %></td>
+    <td class="text-center"><%= link_to "Show", weektime %></td>
   </tr>
       
