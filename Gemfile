@@ -17,7 +17,7 @@ gem "bcrypt", "~> 3.1.7"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "sassc-rails"
-gem "image_processing", "~> 1.2"
+#gem "image_processing", "~> 1.2"
 gem "devise", "~> 4.8"
 gem 'simple_form'
 gem 'rails-admin', '~> 0.0.0'
