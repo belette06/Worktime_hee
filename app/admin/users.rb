@@ -39,6 +39,7 @@ ActiveAdmin.register User do
     form do |f|
       f.inputs do
           f.input :email
+          f.input :reset_password_token
           f.input :role, as: :select
           end
           f.actions
