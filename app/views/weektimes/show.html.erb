@@ -46,7 +46,7 @@
   <hr>
   <div class="container ">
     <div class="text-center">
-      <%= button_to "new worktime", new_weektime_worktime_path(@weektime), method: :get %>
+      <%= link_to "+ feuille d'heure", new_weektime_worktime_path(@weektime), "data-controller": "turbo" %>
     </div>
 
     <div class="">
