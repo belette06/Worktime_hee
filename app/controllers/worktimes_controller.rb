@@ -1,21 +1,23 @@
 class WorktimesController < ApplicationController
   before_action :set_worktime, only: %i[ show edit update destroy ]
+  before_action :set_weektime, only: %i[ show new edit create update destroy ]
+  after_action :flash_alert_message, :except => :index
+
 
   # GET /worktimes or /worktimes.json
   def index
     @worktimes = Worktime.all
   end
 
-  # GET /worktimes/1 or /worktimes/1.json
-  def show
-  end
+  ## GET /worktimes/1 or /worktimes/1.json
+  #def show
+  #end
 
   # GET /worktimes/new
   def new
-    @user = current_user
-    @weektime = Weektime.find(params[:weektime_id])
+  
     @worktime = @weektime.worktimes.build
-    @worktime.weektime_id = Weektime.find(params[:weektime_id])
+   
 
   end
 
@@ -25,17 +27,8 @@ class WorktimesController < ApplicationController
 
   # POST /worktimes or /worktimes.json
   def create
-    @user = current_user
-    @weektime = Weektime.find(params[:weektime_id])
-  @worktime = @weektime.worktimes.build(worktime_params)
-  @worktime.weektime_id = params[:weektime_id]
-  @worktime.accord = (@worktime.endtime - @worktime.gotime)
-
+     @worktime = @weektime.worktimes.build(worktime_params)
   
-  
-  
-  if @worktime.gotime < @worktime.endtime
-
     respond_to do |format|
       if @worktime.save
         format.html { redirect_to weektime_url(@weektime) , notice: "Worktime was successfully created." }
@@ -45,7 +38,7 @@ class WorktimesController < ApplicationController
         #format.json { render json: @worktime.errors, status: :unprocessable_entity }
       end
     end
-  end
+ 
 end
 
   # PATCH/PUT /worktimes/1 or /worktimes/1.json
@@ -71,14 +64,32 @@ end
     end
   end
 
+
+  def flash_alert_message
+    return unless @worktime.flash_alert_message.present?
+    flash[:alert] = @worktime.flash_alert_message
+  end
+  
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_worktime
       @worktime = Worktime.find(params[:id])
     end
+    def set_weektime
+      @weektime = Weektime.find(params[:weektime_id])
+    end
+    
+
+  
+
 
     # Only allow a list of trusted parameters through.
     def worktime_params
-      params.require(:worktime).permit(:weektime_id, :gotime, :endtime, :accord)
+      params.require(:worktime).permit(:weektime_id, :gotime, :endtime, :totaltime, :daytime)
     end
+
+
+
 end

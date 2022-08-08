@@ -6,9 +6,9 @@
   <% @worktimes.each do |worktime| %>
     <%= render worktime %>
     <p>
-      <%= link_to "Show this worktime", worktime %>
+      <%#= link_to "Show this worktime", weektime_worktime_url(worktime) %>
     </p>
   <% end %>
 </div>
 
-<%= button_to "New worktime", new_worktime_path,method: :get %>
+<%= button_to "New worktime", new_weektime_worktime_path,method: :get %>

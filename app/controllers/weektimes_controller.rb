@@ -6,6 +6,8 @@ class WeektimesController < ApplicationController
   end
 
 
+
+
   # GET /weektimes or /weektimes.json
   def index
     if current_user.admin
@@ -20,18 +22,22 @@ class WeektimesController < ApplicationController
   # GET /weektimes/1 or /weektimes/1.json
   def show
 
-   @worktime = @weektime.worktimes
-   @weektime.alltime = 0
-   @worktime.each do |wo|
-    @weektime.alltime = @weektime.alltime + wo.accord 
+   @worktimes = @weektime.worktimes
+   @weektime.weekhour = 0
+
+   @worktimes.each do |wo|
+    @weektime.weekhour = @weektime.weekhour + wo.totaltime
    end
-   @weektime.save
+
+   @weektime.update_weekhour
+
+  
    
   end
 
   # GET /weektimes/new
   def new
-    @weektime = Weektime.new
+    @weektime = current_user.weektimes.build
   end
 
   # GET /weektimes/1/edit
@@ -40,10 +46,9 @@ class WeektimesController < ApplicationController
 
   # POST /weektimes or /weektimes.json
   def create
-    @weektime = Weektime.new(weektime_params)
-    @weektime.user_id = current_user.id
-    @weektime.accord = 0
-    @weektime.alltime = 0
+    @weektime = current_user.weektimes.build(weektime_params)
+  #  @weektime.user_id = current_user.id
+    @weektime.weekhour = 0
 
     respond_to do |format|
       if @weektime.save
@@ -72,11 +77,10 @@ class WeektimesController < ApplicationController
   # DELETE /weektimes/1 or /weektimes/1.json
   def destroy
     @weektime.destroy
-
-    respond_to do |format|
-      format.html { redirect_to weektimes_url, notice: "Weektime was successfully destroyed." }
-      format.json { head :no_content }
-    end
+       respond_to do |format|
+        format.html { redirect_to weektimes_url(current_user), notice: "Weektime was successfully destroyed." }
+        format.json { head :no_content }
+      end 
   end
 
   private
@@ -85,8 +89,10 @@ class WeektimesController < ApplicationController
       @weektime = Weektime.find(params[:id])
     end
 
+ 
+
     # Only allow a list of trusted parameters through.
     def weektime_params
-      params.require(:weektime).permit(:user_id, :dateweek, :alltime, :accord, :worktime_id =>[] )
+      params.require(:weektime).permit(:user_id, :dateweek, :weekhour, :alltime, :accord, :worktime_id =>[] )
     end
 end

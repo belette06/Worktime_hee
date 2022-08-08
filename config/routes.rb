@@ -4,7 +4,7 @@ Rails.application.routes.draw do
  
   devise_for :users 
    
- 
+
   resources :weektimes do
   resources :worktimes 
   end

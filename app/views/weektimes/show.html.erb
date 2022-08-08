@@ -6,14 +6,14 @@
        <table class="table table-sm">
         <thead class="thead-light">
           <tr>
-            <th><strong>#</strong></th>
+            <th><strong>Jour</strong></th>
             <th><strong>debut</strong></th>
             <th><strong>fin</strong></th>
             <th><strong>H/Total </strong></th>
-            <th><strong>Validation</strong></th>
+          
           </tr>
         </thead>
-    <%if @worktime.empty? %> 
+    <%if @worktimes.empty? %> 
             <tr>
               <td> </td>
               <td> </td>
@@ -22,23 +22,23 @@
             </tr>
     <% else %>   
       <tbody>   
-          <% @worktime.each do |work| %>
+          <% @worktimes.each do |work| %>
             <tr>
-              <td> # </td>
+              <td><%= work.daytime %> </td>
               <td><%= work.gotime.to_fs(:time) %></td>
               <td><%= work.endtime.to_fs(:time) %></td> 
-              <td><%= Time.at(work.accord).utc.strftime("%HH %Mmin") %></td>
+              <td><%= Time.at(work.totaltime).utc.strftime("%HH %Mmin") %></td>
             </tr>
           <% end %>
       </tbody>
     <%end%>  
         <thead class="thead-light">
           <tr>
-            <th> </th>
-            <th> </th>
-            <th> </th>
-            <th><%= Time.at(@weektime.alltime).utc.strftime("%HH %Mmin") %> </th>
             <th>valider: <%= @weektime.accord %></th>
+            <th> </th>
+            <th> </th>
+            <th><%= Time.at(@weektime.weekhour).utc.strftime("%HH %Mmin") %> </th>
+            
           </tr>
         </thead>
       </table>
@@ -46,12 +46,12 @@
   <hr>
   <div class="container ">
     <div class="text-center">
-      <%= button_to "new worktime", new_weektime_worktime_path(@weektime), method: :get %>
+      <%= button_to "+ Ajoute une heure", new_weektime_worktime_path(@weektime), method: :get %>
     </div>
 
     <div class="">
-      <%= button_to "Modifier", edit_weektime_path(@weektime), method: :get %> </br>
-      <%= button_to "Supprimer", @weektime, method: :delete, form: { data: { 'turbo-confirm': 'Vous etes sur ?' } }  %>
+      <%= button_to "Modifier la date de la semaine", edit_weektime_path(@weektime), method: :get %> </br>
+      <%= button_to "Supprimer la feuilles d'heure", @weektime, method: :delete, form: { data: { 'turbo-confirm': 'Vous etes sur ?' } }  %>
     </div>
   </div>
 </div>
@@ -60,3 +60,5 @@
 <div class="container">
 <%= button_to "Dashbord", root_path, method: :get %>
 </div>
+
+

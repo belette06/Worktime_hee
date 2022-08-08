@@ -6,15 +6,11 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 User.destroy_all
+Weektime.destroy_all
 
 
-
-User.create(
-     email: "teste@tt.com",
-    password: "123456",
-    role:2
-)
-p "Created #{User.count} User"
+User.create(email: "teste@tt.com", password: "123456", role: 2)
+p "Created #{User.count} User testeur create"
 
 3.times do
     User.create(
@@ -24,3 +20,24 @@ p "Created #{User.count} User"
     )
     p "Created #{User.count} User"    
 end
+
+#3.times do
+#    User.first.weektimes.create( user_id: User.first)
+#    
+#end
+#
+#6.times do
+#    3.times do
+#               User.find(2).weektimes.create( user_id: 2 )
+#      
+#    end 
+#
+#    3.times do
+#    User.find(2).weektimes.create( user_id: 2 )
+#   
+#    end
+#    3.times do
+#    User.find(2).weektimes.create( user_id: 2 )
+# 
+#    end
+#end
