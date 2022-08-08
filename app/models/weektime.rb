@@ -18,7 +18,9 @@ class Weektime < ApplicationRecord
    
   validates_presence_of :dateweek
 
- 
+  def update_weekhour
+    self.update_columns(weekhour: weekhour)
+  end
 
 
 
